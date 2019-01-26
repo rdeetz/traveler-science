@@ -1,11 +1,11 @@
 package mooville.traveler
 
+import scala.concurrent._
+import scala.concurrent.ExecutionContext.Implicits.global
+
 import com.softwaremill.sttp._
 import com.softwaremill.sttp.akkahttp._
 import com.softwaremill.sttp.json4s._
-
-import scala.concurrent._
-import scala.concurrent.ExecutionContext.Implicits.global
 
 case class HttpBinResponse(origin: String, headers: Map[String, String])
 
@@ -29,6 +29,4 @@ object Traveler extends App {
     //     println(r.body)
     //     backend.close()
     // }
-
-    
 }
