@@ -1,0 +1,6 @@
+000100* Traveler for Business
+000200 IDENTIFICATION DIVISION.
+000300 PROGRAM-ID. traveler-biz.
+000400 PROCEDURE DIVISION.
+000500     DISPLAY "Are you ready to travel?".
+000600     STOP RUN.
