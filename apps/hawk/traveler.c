@@ -64,11 +64,23 @@ int load_csv_file()
     while (fgets(line, 256, file) != NULL)
     {
         //result = fscanf(file, "%s\n", line);
-        printf("%s", line);
+        //printf("%s", line);
         lineCount++;
     }
 
-    printf("Number of lines: %d\n", lineCount); 
+    printf("Number of lines: %d\n", lineCount);
+    rewind(file);
+
+    char lines[lineCount][256];
+
+    for (int i = 0; i < lineCount; i++)
+    {
+        // char tmp[256];
+        // fgets(tmp, 256, file);
+        // strncpy(lines[i], tmp, strlen(tmp) - 1);
+        fgets(lines[i], 256, file);
+        printf("%s", lines[i]);
+    }
 
     // fpos_t position;
     // fgetpos(file, &position);
