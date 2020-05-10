@@ -81,7 +81,10 @@ int print_out_string(char* line)
 
 int load_csv_file()
 {
-    FILE* file = fopen("../../data/country-codes.csv", "r");
+    //const char file_name[] = "../../data/country-codes.csv";
+    //const char file_name[] = "../../data/worldcitiespoplite.csv";
+    const char file_name[] = "../../data/airports.csv";
+    FILE* file = fopen(file_name, "r");
 
     int line_count = 0;
     char line[256];
@@ -110,20 +113,18 @@ int load_csv_file()
     fclose(file);
 
     char countries[country_count][256];
+    int count_characters_to_trim = 1;
 
     for (int j = 0; j < country_count; j++)
     {
-        if (j != 247)
-        {
-            strncpy(countries[j], lines[j], strlen(lines[j]) - 2);
-        }
+        strncpy(countries[j], lines[j], strlen(lines[j]) - count_characters_to_trim);
     }
 
     for (int k = 0; k < country_count; k++)
     {
         int diff = strlen(lines[k]) - strlen(countries[k]);
 
-        if (diff != 2)
+        if (diff != count_characters_to_trim)
         {
             printf("This one is screwed up: %d\n", k);
             printf("%s", lines[k]);
@@ -131,22 +132,15 @@ int load_csv_file()
         }
     }
 
-    /*
     // Now we can inspect elements in the array.
-    int index = 242;
-    // printf("Which country would you like to visit? ");
-    // fscanf(stdin, "%d", &index);
+    int index;
+    printf("Which country would you like to visit? ");
+    fscanf(stdin, "%d", &index);
     printf("Original line %s", lines[index]);
     print_out_string(lines[index]);
 
-    // char tmp[256];
-    // strncpy(tmp, lines[index], strlen(lines[index]) - 2);
-    // printf("Here you go after trimming! %s\n", tmp); // Need to add newline here, as expected.
-    // print_out_string(tmp);
-    
     printf("Modified country %s\n", countries[index]); // Need to add newline here, as expected.
     print_out_string(countries[index]);
-    */
 
     return 0;
 }
